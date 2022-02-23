@@ -15,7 +15,15 @@
           href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
           target="_blank"
           rel="noopener"
-          >babel</a
+          >dindz</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
+          target="_blank"
+          rel="noopener"
+          >dindz</a
         >
       </li>
       <li>
