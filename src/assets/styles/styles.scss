@@ -1,0 +1,21 @@
+@import "homePage";
+@import "navigation";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 100px;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  font-size: 18px;
+  color: $text;
+}
