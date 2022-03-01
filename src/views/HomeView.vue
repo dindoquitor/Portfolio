@@ -36,7 +36,7 @@
           <p>
             Your dedicated and skilled website design services project manager
             will work closely with you throughout the entire process to
-            guarantee that we construct the website of your dreams.
+            guarantee that we construct the website of your dreams. Thank you.
           </p>
         </div>
       </div>
