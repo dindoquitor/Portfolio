@@ -14,16 +14,34 @@
           :to="{ name: 'home' }"
           >Home</RouterLink
         >
-        <RouterLink :to="{ name: 'services' }">Services</RouterLink>
-        <RouterLink :to="{ name: 'contact' }">Contact</RouterLink>
-        <RouterLink :to="{ name: 'blog' }">Blog</RouterLink>
-        <RouterLink :to="{ name: 'privacy' }">Privacy Policy</RouterLink>
+        <RouterLink
+          class="hover:border-b-2 hover:border-slate-900"
+          :to="{ name: 'services' }"
+          >Services</RouterLink
+        >
+        <RouterLink
+          class="hover:border-b-2 hover:border-slate-900"
+          :to="{ name: 'contact' }"
+          >Contact</RouterLink
+        >
+        <RouterLink
+          class="hover:border-b-2 hover:border-slate-900"
+          :to="{ name: 'blog' }"
+          >Blog</RouterLink
+        >
+        <RouterLink
+          class="hover:border-b-2 hover:border-slate-900"
+          :to="{ name: 'privacy' }"
+          >Privacy Policy</RouterLink
+        >
         <a
           href="https://calendly.com/dquitoraccounting/30min"
           target="_blank"
           class="menu-btn"
         >
-          <button class="bg-dindz-primary text-white rounded-md px-4 py-2 ml-8">
+          <button
+            class="bg-dindz-primary text-white rounded-md px-4 py-2 ml-8 hover:bg-white hover:text-dindz-primary hover:border"
+          >
             Book Apointment
           </button>
         </a>
