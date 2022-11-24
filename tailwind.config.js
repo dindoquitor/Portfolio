@@ -10,7 +10,7 @@ module.exports = {
     },
     fontFamily: {
       Prompt: ["Prompt, san-serif"],
-      Kalra: ["Karla, sans-serif"],
+      Karla: ["Karla, sans-serif"],
     },
     container: {
       padding: "2rem",
