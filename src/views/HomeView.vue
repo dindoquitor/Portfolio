@@ -1,7 +1,16 @@
-<script setup>
-import { RouterLink } from "vue-router";
-import HomeSlider from "../components/HomeSlider.vue";
-import CardContent from "../components/CardContent.vue";
+<script>
+  import { RouterLink } from "vue-router";
+  import HomeSlider from "../components/HomeSlider.vue";
+  import CardContent from "../components/CardContent.vue";
+  import { ref } from "vue";
+  import Form from "../components/Form.vue";
+  export default {
+    components: {
+      HomeSlider,
+      CardContent,
+      Form,
+    },
+  };
 </script>
 
 <template>
@@ -80,16 +89,20 @@ import CardContent from "../components/CardContent.vue";
         <HomeSlider />
       </div>
     </div>
-    <section id="services" class="container">
+    <section
+      id="services"
+      class="container"
+    >
       <p class="text-base font-Karla text-dindz-primary">
         Dquitor Accounting Services
       </p>
-      <div class="flex items-start gap-24 justify-between pt-4">
+      <div class="flex items-start gap-24 justify-between pt-4 pb-4">
         <div class="max-w-[35%]">
           <card-content
             title-H1="Serving over 250 Clients"
             description="As a business owner, you put in long hours every single day to see your company succeed. You are juggling a lot of responsibilities, whether it is managing your staff, directing your company’s day-to-day operations, or coming up with new ideas. You don’t have much spare time to deal with the financial aspects of your business. Is it possible that you’re not optimizing your earnings even if your cash flow is strong? Are you on track with your expected tax payments? Payroll or sales and use tax compliance with federal and state laws is essential."
           />
+          <Form />
         </div>
         <div class="max-w-[65%] flex gap-10 justify-between">
           <div class="grid grid-cols-2 gap-6">
