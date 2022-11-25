@@ -1,13 +1,10 @@
 <template>
   <div>
-    <Form
-      ref="form"
-      @submit="onSubmit"
-      method="post"
-      class="flex flex-col gap-2"
-    >
+    <Form ref="form" @submit="onSubmit" class="flex flex-col gap-3">
       <div>
-        <label for="">Complete Name</label>
+        <label class="text-dindz-text font-Karla font-medium text-lg"
+          >Complete Name <span class="text-red-600">*</span></label
+        >
         <Field
           class="border border-dindz-primary focus:outline-none rounded-md w-full p-2"
           type="text"
@@ -15,13 +12,12 @@
           placeholder="Your Name"
           :rules="isRequired"
         />
-        <ErrorMessage
-          class="text-dindz-primary"
-          name="completeName"
-        />
+        <ErrorMessage class="text-dindz-primary" name="completeName" />
       </div>
       <div>
-        <label for="">Email</label>
+        <label class="text-dindz-text font-Karla font-medium text-lg"
+          >Email <span class="text-red-600">*</span></label
+        >
         <Field
           class="border border-dindz-primary focus:outline-none rounded-md w-full p-2"
           type="email"
@@ -29,13 +25,12 @@
           placeholder="Your Valid Email"
           :rules="validateEmail"
         />
-        <ErrorMessage
-          class="text-dindz-primary"
-          name="email"
-        />
+        <ErrorMessage class="text-dindz-primary" name="email" />
       </div>
       <div>
-        <label for="">Message</label>
+        <label class="text-dindz-text font-Karla font-medium text-lg"
+          >Message <span class="text-red-600">*</span></label
+        >
         <Field
           as="textarea"
           class="border border-dindz-primary focus:outline-none rounded-md w-full p-2"
@@ -46,10 +41,7 @@
           rows="3"
           :rules="isRequired"
         />
-        <ErrorMessage
-          class="text-dindz-primary"
-          name="message"
-        />
+        <ErrorMessage class="text-dindz-primary" name="message" />
       </div>
 
       <button
@@ -63,45 +55,63 @@
 </template>
 
 <script>
-  import { Form, Field, ErrorMessage } from "vee-validate";
-  export default {
-    components: {
-      Form,
-      Field,
-      ErrorMessage,
+import { Form, Field, ErrorMessage } from "vee-validate";
+import emailjs from "@emailjs/browser";
+export default {
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+  },
+  data() {
+    return {
+      serviceID: import.meta.env.VITE_SERVICE_ID,
+      templateID: import.meta.env.VITE_TEMPLATE_ID,
+      publicKey: import.meta.env.VITE_PUBLIC_KEY,
+    };
+  },
+  methods: {
+    onSubmit(values) {
+      emailjs
+        .sendForm(
+          this.serviceID,
+          this.templateID,
+          this.$refs.form,
+          this.publicKey
+        )
+        .then(
+          (result) => {
+            console.log("SUCCESS", result.text);
+          },
+          (error) => {
+            console.log("FAILED", error.text);
+          }
+        );
+      // console.log(JSON.stringify(values, null, 2));
+      // console.log(values.completeName);
+      // console.log(values.email);
+      // console.log(values.message);
+      console.log(this.serviceID);
+      console.log(this.templateID);
+      console.log(this.publicKey);
+      this.$refs.form.resetForm();
     },
-    methods: {
-      onSubmit(values) {
-        console.log(JSON.stringify(values, null, 2));
-        // Email.send({
-        //   Host: "smtp-relay.sendinblue.com",
-        //   Username: "robah52@eqsaucege.com",
-        //   Password: "phAXGmRDB5JaMb7T6",
-        //   To: "dindoquitor@gmail.com",
-        //   From: Email,
-        //   Subject: "This is the subject",
-        //   Body: "And this is the body",
-        // }).then((message) => alert(message));
-        this.$refs.form.resetForm();
-      },
-      isRequired(value) {
-        if (!value) {
-          return "This field is required";
-        }
-        return true;
-      },
-      validateEmail(value) {
-        if (!value) {
-          return "This field should not be empty.";
-        }
-        const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-        if (!regex.test(value)) {
-          return "This field must contain a valid email.";
-        }
-        return true;
-      },
+    isRequired(value) {
+      if (!value) {
+        return "This field is required";
+      }
+      return true;
     },
-  };
+    validateEmail(value) {
+      if (!value) {
+        return "This field should not be empty.";
+      }
+      const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+      if (!regex.test(value)) {
+        return "This field must contain a valid email.";
+      }
+      return true;
+    },
+  },
+};
 </script>
-
-<style lang="scss" scoped></style>
