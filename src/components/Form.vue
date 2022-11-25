@@ -1,11 +1,6 @@
 <template>
   <div>
-    <Form
-      ref="form"
-      @submit="onSubmit"
-      method="post"
-      class="flex flex-col gap-3"
-    >
+    <Form ref="form" @submit="onSubmit" class="flex flex-col gap-3">
       <div>
         <label class="text-dindz-text font-Karla font-medium text-lg"
           >Complete Name <span class="text-red-600">*</span></label
@@ -61,18 +56,44 @@
 
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
+import emailjs from "@emailjs/browser";
 export default {
   components: {
     Form,
     Field,
     ErrorMessage,
   },
+  data() {
+    return {
+      serviceID: import.meta.env.VITE_SERVICE_ID,
+      templateID: import.meta.env.VITE_TEMPLATE_ID,
+      publicKey: import.meta.env.VITE_PUBLIC_KEY,
+    };
+  },
   methods: {
     onSubmit(values) {
+      emailjs
+        .sendForm(
+          this.serviceID,
+          this.templateID,
+          this.$refs.form,
+          this.publicKey
+        )
+        .then(
+          (result) => {
+            console.log("SUCCESS", result.text);
+          },
+          (error) => {
+            console.log("FAILED", error.text);
+          }
+        );
       // console.log(JSON.stringify(values, null, 2));
-      console.log(values.completeName);
-      console.log(values.email);
-      console.log(values.message);
+      // console.log(values.completeName);
+      // console.log(values.email);
+      // console.log(values.message);
+      console.log(this.serviceID);
+      console.log(this.templateID);
+      console.log(this.publicKey);
       this.$refs.form.resetForm();
     },
     isRequired(value) {
